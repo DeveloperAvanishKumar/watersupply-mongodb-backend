@@ -16,14 +16,17 @@ app.use('/web/api', categoryRoutes);
 app.use('/web/api', userRoutes);
 
 // ✅ MongoDB connection and server start
-mongoose.connect(process.env.DBURL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("✅ Database Connected");
-    app.listen(process.env.PORT || 3000, () => {
-        console.log(`Server running at http://localhost:${process.env.PORT || 3000}`);
+
+// Optional: Turn off strict query warnings
+mongoose.set('strictQuery', false);
+
+mongoose.connect(process.env.DBURL)
+    .then(() => {
+        console.log(" Database Connected");
+        app.listen(process.env.PORT || 3000, () => {
+            console.log(`Server running at http://localhost:${process.env.PORT || 3000}`);
+        });
+    })
+    .catch((err) => {
+        console.error(" Database Connection Error:", err.message);
     });
-}).catch((err) => {
-    console.error("Database Connection Error:", err.message);
-});
