@@ -12,8 +12,4 @@ userRoutes.post('/user-information-login', mUserLogin)
 userRoutes.post('/user-information-reset-password', mUserResetPassword)
 
 
-
-
-
-
 module.exports = userRoutes;

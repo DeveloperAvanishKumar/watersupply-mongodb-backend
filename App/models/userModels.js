@@ -8,6 +8,7 @@ const userInformationSchema = new mongoose.Schema({
     address: String,
     isVerified: { type: Boolean, default: false },
     token: String, // ✅ Important
+
 });
 
 module.exports = mongoose.model('UserInformation', userInformationSchema);
